@@ -14,9 +14,9 @@ body {
 
 
 /* //////////////////////////////////////////////// SVG //////////////////////////////////////////////// */
-.container {
-    width: 50vmin;
-    height: 50vmin;
+.game-wrapper {
+    width: 75vmin;
+    height: 75vmin;
     background-color: white;
     border: 2px solid #ccc;
     display: flex;
@@ -28,18 +28,30 @@ body {
 }
 
 /* Barra superior */
-.top-bar {
+.game-header {
     width: 100%;
-    height: 25px;
-    background-color: rgba(0, 0, 0, 0.4);
+    height: 40px;
+    background: hsla(0, 3%, 50%, 0.5);
+    font-size: clamp(.8rem, 2vw, 1.2rem);
+    padding: .5rem 8rem .5rem 1rem;
+    gap: 1em;
     display: flex;
     align-items: center;
     padding: 0 5px;
     opacity: 0.8;
+    position: absolute;
+    z-index: 2;
+}
+
+.game-header-divisor::after {
+    color: black;
+    content: "|";
+    margin-left: .4em;
+    position: absolute;
 }
 
 /* Cuadros de texto */
-.top-bar input {
+.game-header input {
     width: 20%;
     height: 70%;
     margin: 0 2px;
@@ -54,7 +66,7 @@ body {
     position: absolute;
     right: 0;
     top: -10px;
-    width: 110px;
+    width: 75px;
     height: auto;
     opacity: 100%;
     z-index: 2;

@@ -43,13 +43,15 @@ wrapper.addEventListener("wheel", (event) => {
 
     const prevScale = scale;
     if (event.deltaY < 0) {
-        scale *= 1.15;
+        scale *= 1.15;  // Zoom in
     } else {
-        scale /= 1.15;
+        scale /= 1.15;  // Zoom out
     }
 
+    // Limitar el rango de zoom
     scale = Math.min(maxScale, Math.max(minScale, scale));
 
+    // Ajustar la traslación para centrar el zoom en el cursor
     translateX -= (offsetX - translateX) * (scale / prevScale - 1);
     translateY -= (offsetY - translateY) * (scale / prevScale - 1);
 

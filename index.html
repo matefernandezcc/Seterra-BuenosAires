@@ -9,13 +9,18 @@
 
     <body>
 
-        <div class="container">
+        <div class="game-wrapper">
             <!-- Barra superior -->
-            <div class="top-bar">
-                <input type="text" placeholder="Texto 1">
-                <input type="text" placeholder="Texto 2">
-                <input type="text" placeholder="Texto 3">
-                <img class="flag" src="./Partidos/Banderas/Pinamar.png" alt="Bandera Municipio">
+            <div class="game-header">
+                <span class="objective game-header-divisor">0/135</span>
+                <span>0<!-- -->%</span>
+                <span class="timer game-header-divisor">00:00</span>
+                <span class="area game-header-divisor">Escribe el nombre del lugar marcado en la casilla</span>
+                <span><button title="Skip" class="skip-area">&gt;</button></span>
+            </div>
+
+            <div class="corner-flag">
+                <img alt="Bandera Municipio" loading="lazy" width="256" height="256" decoding="async" data-nimg="1" class="flag" src="./Partidos/Banderas/Pinamar.png" style="color: transparent;">
             </div>
 
             <div class="svg-wrapper">
@@ -434,6 +439,7 @@
                     style="fill-rule:evenodd;fill:currentColor;fill-opacity:1" transform="translate(-669.25 -12.28) scale(11.8081)"/>
                 </svg>
             </div>
+
         </div>
 
         <!-- Cuadro popup para mostrar el id -->
