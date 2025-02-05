@@ -8,7 +8,8 @@ function selectRandomArea() {
     const escudoImage = document.querySelector('.escudo');  // Imagen del escudo
 
     if (paths.length > 0 && areaSpan) {
-        // Selecciona un path al azar
+        incorrectCount = 0;
+        
         const randomIndex = Math.floor(Math.random() * paths.length);
         const randomPath = paths[randomIndex];
         const randomPathId = randomPath.id;

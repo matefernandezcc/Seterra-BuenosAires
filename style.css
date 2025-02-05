@@ -20,7 +20,7 @@ body {
 .game-wrapper {
     width: 75vmin;
     height: 75vmin;
-    background-color: white;
+    background-color: #a4d1dc;
     border: 2px solid #ccc;
     display: flex;
     flex-direction: column;
