@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400..800;1,400..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Rethink Sans", serif;
 }
 
 body {
@@ -29,17 +32,21 @@ body {
 
 /* Barra superior */
 .game-header {
-    width: 100%;
-    height: 40px;
-    background: hsla(0, 3%, 50%, 0.5);
-    font-size: clamp(.8rem, 2vw, 1.2rem);
-    padding: .5rem 8rem .5rem 1rem;
-    gap: 1em;
-    display: flex;
+    height: 50px;
     align-items: center;
-    padding: 0 5px;
-    opacity: 0.8;
+    background: hsla(0, 3%, 50%, 0.5);
+    display: flex;
+    font-size: clamp(.8rem, 2vw, 1.2rem);
+    gap: 1em;
+    left: 0;
+    padding: .5rem 8rem .5rem 1rem;
+    pointer-events: none;
     position: absolute;
+    right: 0;
+    top: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
     z-index: 2;
 }
 
@@ -65,12 +72,35 @@ body {
 .flag {
     position: absolute;
     right: 0;
-    top: -10px;
+    top: 0;
     width: 75px;
     height: auto;
     opacity: 100%;
     z-index: 2;
     pointer-events: none;
+}
+
+.escudo {
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    position: absolute;
+    right: 100px;
+    width: 30px;
+    height: auto;
+    opacity: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.skip-area {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    font-size: unset;
+    margin-left: .5rem;
+    padding: 0;
+    pointer-events: auto;
 }
 
 /* Ajusta el SVG dentro del contenedor */
@@ -105,7 +135,7 @@ svg path:hover {
 /* //////////////////////////////////////////////// Estilo para el cuadro informativo //////////////////////////////////////////////// */
 .popup {
     position: absolute;
-    background-color: #00e35a;
+    background-color: #08c052;
     color: white;
     padding: 5px 10px;
     border-radius: 4px;
