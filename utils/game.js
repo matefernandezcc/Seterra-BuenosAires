@@ -75,18 +75,29 @@ function getCurrentObjective() {
 
 // Función para seleccionar un path aleatorio y actualizar el span "area", la bandera y el escudo
 function selectRandomArea() {
-  const paths = document.querySelectorAll('#Mapa path');
+  const allPaths = document.querySelectorAll('#Mapa path');
   const areaSpan = document.querySelector('.area');
   const flagImage = document.querySelector('.flag');
   const escudoImage = document.querySelector('.escudo');
 
-  if (paths.length > 0 && areaSpan) {
-    // Reinicia los intentos fallidos para el nuevo objetivo
+  if (allPaths.length > 0 && areaSpan) {
     incorrectCount = 0;
 
-    // Selecciona un path al azar
-    const randomIndex = Math.floor(Math.random() * paths.length);
-    const randomPath = paths[randomIndex];
+    // Filtrar solo los paths que tienen el fill por defecto (en este caso, "rgb(30, 131, 70)" o "#3b965f")
+    const candidatePaths = Array.from(allPaths).filter(path => {
+      const fill = window.getComputedStyle(path).fill.toLowerCase();
+      return fill === "rgb(30, 131, 70)" || fill === "#3b965f";
+    });
+
+    // Si no hay candidatos, todas las áreas han sido solucionadas.
+    if (candidatePaths.length === 0) {
+      //alert("¡Todos los objetivos han sido resueltos!");
+      return;
+    }
+
+    // Selecciona un path al azar de la lista filtrada
+    const randomIndex = Math.floor(Math.random() * candidatePaths.length);
+    const randomPath = candidatePaths[randomIndex];
     const randomPathId = randomPath.id;
 
     // Actualiza el contenido del <strong> dentro del span "area"
@@ -158,10 +169,9 @@ document.addEventListener("DOMContentLoaded", function() {
     path.addEventListener('click', function(event) {
       event.stopPropagation();
       
-      // Obtener el color actual del path
       const computedFill = window.getComputedStyle(this).fill.toLowerCase();
       if (computedFill === "rgb(243, 243, 243)" || computedFill === "rgb(226, 178, 45)" || computedFill === "rgb(191, 65, 64)") {
-        return; // Si ya está marcado, ignoramos el clic
+        return;
       }
 
       checkObjective(this.id);
