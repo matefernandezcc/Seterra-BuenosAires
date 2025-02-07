@@ -32,23 +32,28 @@ document.addEventListener("DOMContentLoaded", function() {
   
 
 //////////////////////////////////////////////// Objetivos ////////////////////////////////////////////////
-// Variables globales para llevar la cuenta de los intentos del objetivo actual
 let incorrectCount = 0; // Contador de intentos fallidos para el objetivo actual
-const totalObjectives = 135;
+let solvedCorrect = 0;
+const svgElement = document.getElementById("Mapa");
+const totalObjectives = parseInt(svgElement.getAttribute("areas"), 10);
 
 // Función para recalcular cuántos paths ya han sido solucionados (marcados con blanco, amarillo o rojo)
 function recalcSolvedCount() {
+  solvedCorrect = 0;
+  let solvedIncorrect = 0;
   const paths = document.querySelectorAll('#Mapa path');
-  let solved = 0;
+  
   paths.forEach(path => {
     const fill = window.getComputedStyle(path).fill.toLowerCase();
-    if (fill === "rgb(243, 243, 243)" || fill === "white" || 
-        fill === "rgb(226, 178, 45)" || fill === "yellow" || 
-        fill === "rgb(191, 65, 64)" || fill === "red") {
-      solved++;
+    if (fill === "rgb(243, 243, 243)" || fill === "rgb(226, 178, 45)") {
+      solvedCorrect++;
+    }
+    if (fill === "rgb(191, 65, 64)") {
+      solvedIncorrect++;
     }
   });
-  return solved;
+  
+  return solvedCorrect + solvedIncorrect;
 }
 
 // Función para actualizar el contador y el porcentaje en la interfaz
@@ -61,7 +66,7 @@ function updateObjectiveDisplay() {
     objectiveSpan.textContent = `${solvedCount}/${totalObjectives}`;
   }
   if (percentageSpan) {
-    const percent = Math.floor((solvedCount / totalObjectives) * 100);
+    const percent = Math.floor((solvedCorrect / totalObjectives) * 100);
     percentageSpan.textContent = `${percent}%`;
   }
 }
